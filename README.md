@@ -1,42 +1,72 @@
-# sv
+# ⚡️ SUBBURN LEDGER
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> **Intentional Subscription Auditing Engine** > _Built for developers who value sovereignty over convenience._
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 🛠 THE STACK
 
-```sh
-# create a new project
-npx sv create my-app
+- **Engine:** [Laravel 11.x](https://laravel.com) (PHP 8.3+)
+- **Reactive Layer:** [Svelte 5](https://svelte.dev) (Runes Architecture)
+- **Persistence:** [PostgreSQL 16](https://postgresql.org)
+- **Utility:** [Tailwind CSS v4](https://tailwindcss.com)
+- **Icons:** [Lucide Svelte](https://lucide.dev)
+
+---
+
+## 📖 THE MANIFESTO
+
+Most subscription trackers focus on **convenience**. They link to your bank, scan your data, and present a passive dashboard.
+
+**SubBurn is different.** It is built on the philosophy that **automation breeds apathy**. When a machine handles your money, you lose touch with its value. SubBurn utilizes "Mindful Manual Entry" to create a psychological friction that drives awareness.
+
+15 seconds of manual logging forces a conscious choice: **Is this worth the burn?**
+
+---
+
+## 🏗 KEY PROTOCOLS
+
+### 01. Zero-Knowledge Handshakes
+
+We don't want your bank passwords. SubBurn operates entirely without Plaid or third-party financial aggregators. Your data remains isolated in your personal vault.
+
+### 02. Lifetime Burn Rate (LBR)
+
+Calculates the 5-year opportunity cost for every entry. Visualizes the exponential drain of "cheap" recurring costs.
+
+### 03. Logical Multi-Tenant Isolation
+
+Architected at the database query level to ensure data integrity and sovereignty.
+
+### 04. Vibe-Driven UX
+
+- **Noise Texture Overlay:** Tactical grain for high-contrast visual depth.
+- **Crosshair Navigation:** Precision-focused custom cursor.
+- **Skeletal UI:** Minimalist, blueprint-inspired aesthetic.
+
+---
+
+## 🚀 INSTALLATION PROTOCOL
+
+### 1. System Requirements
+
+Ensure your environment meets the following specifications:
+
+- **PHP** >= 8.3
+- **Node.js** >= 20.x
+- **PostgreSQL** >= 16
+
+### 2. Initialization
+
+```bash
+# Clone the repository
+git clone [https://github.com/your-username/subburn-ledger.git](https://github.com/your-username/subburn-ledger.git)
+
+# Install dependencies
+composer install
+npm install
+
+# Setup Environment
+cp .env.example .env
+php artisan key:generate
 ```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-bun x sv@0.15.1 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:vercel" --install bun subburn
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
