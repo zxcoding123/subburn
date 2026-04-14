@@ -1,12 +1,14 @@
+<script lang="ts">
+    import Logo from "$lib/components/global/Logo.svelte";
+</script>
+
 <footer class="bg-white border-t border-zinc-200 pt-32 pb-12 px-6">
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
             
             <div class="lg:col-span-7 space-y-8">
                 <div class="flex items-center gap-3">
-                    <div class="size-8 bg-zinc-900 flex items-center justify-center">
-                        <span class="text-white font-mono text-xs font-bold">SB</span>
-                    </div>
+                    <Logo />
                     <div class="h-px w-12 bg-zinc-200"></div>
                     <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em]">Developer_Manifesto</span>
                 </div>

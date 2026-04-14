@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Button } from "$lib/components/ui/button";
-    import { Plus, Calendar, Target, ShieldCheck, Flame, ArrowRight, Lock, Database, Download } from "@lucide/svelte";
+    import { slide, fade } from 'svelte/transition';
+    import { Plus,  ShieldCheck,  ArrowRight, Menu, X } from "@lucide/svelte";
 
     // --- Svelte 5 State (Demo Logic) ---
     let subscriptions = $state([
@@ -26,10 +27,14 @@
         }
     }
 
+    let isMenuOpen = $state(false);
+    const closeMenu = () => isMenuOpen = false;
+
     const totalMonthly = $derived(subscriptions.reduce((acc, s) => acc + (s.price || 0), 0));
     const totalYearly = $derived(totalMonthly * 12);
     const lifetimeBurn = $derived(totalYearly * 5);
 
+    import Logo from "$lib/components/global/Logo.svelte";
 	import Features from "$lib/components/sections/hero/features.svelte";
 	import Privacy from "$lib/components/sections/hero/privacy.svelte";
 	import Philosophy from "$lib/components/sections/hero/philosophy.svelte";
@@ -41,23 +46,68 @@
 
 <div class="min-h-screen bg-[#fcfcfc] text-[#1a1a1a] font-sans selection:bg-orange-100">
     
-    <nav class="border-b border-zinc-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+<nav class="sticky top-0 z-50 px-4 mt-2"> <div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border-x border-b border-orange-500/20 rounded-b-3xl shadow-sm transition-all">
+        <div class="px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="size-8 bg-zinc-900 flex items-center justify-center">
-                        <span class="text-white font-mono text-xs font-bold">SB</span>
-                    </div>
+              <Logo />
                 <span class="font-semibold tracking-tight text-lg">SubBurn<span class="text-orange-600">.</span></span>
             </div>
-            <div class="flex items-center gap-6 text-sm font-medium">
+
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="#philosophy" class="text-zinc-500 hover:text-orange-600 transition-colors">Philosophy</a>
                 <a href="#privacy" class="text-zinc-500 hover:text-orange-600 transition-colors">Privacy</a>
                 <Button class="bg-orange-600 hover:bg-orange-700 text-white rounded-full px-5 h-9 text-xs font-semibold">
                     Join Waitlist
                 </Button>
             </div>
+
+            <div class="md:hidden flex items-center">
+                <button 
+                    onclick={() => isMenuOpen = !isMenuOpen} 
+                    class="text-zinc-900 focus:outline-none p-1"
+                    aria-label="Toggle Menu"
+                >
+                    {#if isMenuOpen}
+                        <div in:fade={{ duration: 200 }}>
+                            <X class="size-6 text-orange-600" />
+                        </div>
+                    {:else}
+                        <div in:fade={{ duration: 200 }}>
+                            <Menu class="size-6" />
+                        </div>
+                    {/if}
+                </button>
+            </div>
         </div>
-    </nav>
+
+        {#if isMenuOpen}
+            <div 
+                transition:slide={{ duration: 300 }}
+                class="md:hidden overflow-hidden border-t border-orange-500/10"
+            >
+                <div class="px-6 py-8 space-y-6 flex flex-col">
+                    <a 
+                        onclick={closeMenu}
+                        href="#philosophy" 
+                        class="text-lg text-zinc-500 hover:text-orange-600 font-medium transition-colors"
+                    >
+                        Philosophy
+                    </a>
+                    <a 
+                        onclick={closeMenu}
+                        href="#privacy" 
+                        class="text-lg text-zinc-500 hover:text-orange-600 font-medium transition-colors"
+                    >
+                        Privacy
+                    </a>
+                    <Button class="w-full bg-orange-600 hover:bg-orange-700 text-white rounded-2xl py-6 text-sm font-semibold">
+                        Join Waitlist
+                    </Button>
+                </div>
+            </div>
+        {/if}
+    </div>
+</nav>
 
  <main class="max-w-7xl mx-auto px-6 pt-32 pb-40">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
